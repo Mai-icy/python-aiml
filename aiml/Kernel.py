@@ -13,7 +13,7 @@ import sys
 import time
 import threading
 import xml.sax
-from collections import namedtuple
+from collections import namedtuple, deque
 
 try:
     from ConfigParser import ConfigParser
@@ -309,8 +309,8 @@ class Kernel:
         # Create the session.
         self._sessions[sessionID] = {
             # Initialize the special reserved predicates
-            self._inputHistory: [],
-            self._outputHistory: [],
+            self._inputHistory: deque(maxlen=self._maxHistorySize),
+            self._outputHistory: deque(maxlen=self._maxHistorySize),
             self._inputStack: []
         }
 
@@ -394,8 +394,6 @@ class Kernel:
                 # 其实就是一个会话历史
                 inputHistory = self.getPredicate(self._inputHistory, sessionID)
                 inputHistory.append(s)
-                while len(inputHistory) > self._maxHistorySize:
-                    inputHistory.pop(0)
                 self.setPredicate(self._inputHistory, inputHistory, sessionID)
 
                 # 获取回复
@@ -405,8 +403,6 @@ class Kernel:
                 outputHistory = self.getPredicate(
                     self._outputHistory, sessionID)
                 outputHistory.append(response)
-                while len(outputHistory) > self._maxHistorySize:
-                    outputHistory.pop(0)
                 self.setPredicate(
                     self._outputHistory, outputHistory, sessionID)
 

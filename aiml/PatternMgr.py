@@ -9,11 +9,11 @@ todo：如果使用字典构建节点树会很庞大，原来的代码利用字�
 
 from __future__ import print_function
 
-from LangSupport import splitChinese
 import marshal
 import pprint
 import re
 
+from .LangSupport import splitChinese
 from .constants import *
 
 
