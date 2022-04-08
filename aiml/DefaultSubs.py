@@ -3,6 +3,10 @@ PyAIML kernel.  These substitutions may be overridden by using the
 Kernel.loadSubs(filename) method.  The filename specified should refer
 to a Windows-style INI file with the following format:
 
+这个文件包含了PyAIML内核的默认单词(英语单词)替换，这些替换规则可以被
+Kernel.loadSubs(filename) 函数覆盖，其中的filename参数指的是
+windows风格的ini配置文件，并且遵循以下格式：
+
     # lines that start with '#' are comments
 
     # The 'gender' section contains the substitutions performed by the
@@ -42,11 +46,15 @@ defaultGender = {
     "his": "her",
     "himself": "herself",
 
-    # feminine -> masculine    
+    "他": "她",
+
+    # feminine -> masculine
     "she": "he",
     "her": "him",
     "hers": "his",
     "herself": "himself",
+
+    "她": "他",
 }
 
 defaultPerson = {
@@ -57,17 +65,23 @@ defaultPerson = {
     "mine": "his",
     "myself": "himself",
 
+    "我": "他",
+
     # 3rd->1st (masculine)
-    "he":"I",
-    "him":"me",
-    "his":"my",
-    "himself":"myself",
+    "he": "I",
+    "him": "me",
+    "his": "my",
+    "himself": "myself",
+
+    "他": "我",
     
     # 3rd->1st (feminine)
-    "she":"I",
-    "her":"me",
-    "hers":"mine",
-    "herself":"myself",
+    "she": "I",
+    "her": "me",
+    "hers": "mine",
+    "herself": "myself",
+
+    "她": "我",
 }
 
 defaultPerson2 = {
